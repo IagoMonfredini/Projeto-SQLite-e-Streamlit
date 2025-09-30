@@ -2,9 +2,7 @@ import sqlite3
 
 conexao = sqlite3.connect("biblioteca.db")
 
-
 cursor = conexao.cursor()
-
 
 def cadastar_livro():
         try:
@@ -49,3 +47,22 @@ def atualizar_disponibilidade():
                     print("Livro não encontrado.")
             except Exception as erro:
                 print(f"Erro ao atualizar livro: {erro}")
+                
+def remover_livros():
+    try:
+        conexao = sqlite3.connect("biblioteca.db")
+        cursor = conexao.cursor()
+        id_removido = int(input("Digite o id do livro que deseja excluir: "))
+        cursor.execute("DELETE FROM livros WHERE id = ?", (id_removido,))     
+        conexao.commit()
+        if cursor.rowcount > 0:
+            print("Livro removido com sucesso!")
+        else:
+            print("Nenhum livro encontrado com o ID fornecido.")
+    except Exception as erro:
+        print(f"Erro ao tentar excluir Livro: {erro}")
+
+    finally:
+        if conexao:
+            conexao.close()
+
