@@ -1,7 +1,3 @@
-Aqui está um **README.md** que documenta o funcionamento do seu projeto da biblioteca:
-
----
-
 # 📚 Sistema de Biblioteca (SQLite + Python)
 
 Este projeto é um sistema simples de gerenciamento de livros utilizando **Python** e **SQLite**.
