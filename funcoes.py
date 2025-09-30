@@ -21,3 +21,14 @@ def cadastar_livro():
         except Exception as erro:
             print(f"Erro ao cadastrar: {erro}")
 
+def listar_livros():
+        try:
+            cursor.execute('SELECT * FROM livros')
+            livros = cursor.fetchall()
+            if livros:
+                for livro in livros:
+                    print(f"ID: {livro[0]} | Título: {livro[1]} | Autor: {livro[2]} | Ano: {livro[3]} | Disponível: {livro[4]}")
+            else:
+                print("Nenhum livro cadastrado.")
+        except Exception as erro:
+            print(f"Erro ao listar livros: {erro}")
