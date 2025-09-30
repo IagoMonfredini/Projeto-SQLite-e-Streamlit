@@ -4,7 +4,6 @@ import funcoes as op
 conexao = sqlite3.connect("biblioteca.db")
 cursor = conexao.cursor()
 
-
 cursor.execute('''
         CREATE TABLE IF NOT EXISTS livros (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -15,7 +14,6 @@ cursor.execute('''
     )
     ''')
 conexao.commit()
-print("Tabela 'livros' criada")
 
 while True:
     print("---- Sistema Da Biblioteca ---")
