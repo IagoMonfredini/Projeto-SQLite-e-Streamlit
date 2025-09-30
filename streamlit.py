@@ -45,7 +45,7 @@ if escolha == "Cadastrar Livro":
         st.header("Cadastrar Novo Livro")
         titulo = st.text_input("Título")
         autor = st.text_input("Autor")
-        ano = st.number_input("Ano")
+        ano = st.date_input("Ano")
         disponivel = st.selectbox("Disponibilidade", ["Sim", "Não"])
 
 if st.button("Cadastrar"):
