@@ -26,7 +26,7 @@ while True:
     print("5.Sair")
 
     opcao = input("Escolha uma opção: ")
-                    
+
     if opcao == "1":
         op.cadastar_livro()
     elif opcao == "2":  

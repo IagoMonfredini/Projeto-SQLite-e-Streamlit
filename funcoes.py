@@ -32,3 +32,20 @@ def listar_livros():
                 print("Nenhum livro cadastrado.")
         except Exception as erro:
             print(f"Erro ao listar livros: {erro}")
+            
+def atualizar_disponibilidade():
+            try:
+                id_livro = input("Digite o ID do livro que deseja atualizar: ")
+                nova_disponibilidade = input("Digite a nova disponibilidade (sim/não): ")
+                cursor.execute('''
+                UPDATE livros
+                SET disponivel = ?
+                WHERE id = ?
+                ''', (nova_disponibilidade, id_livro))
+                conexao.commit()
+                if cursor.rowcount > 0:
+                    print("Disponibilidade atualizada com sucesso!")
+                else:
+                    print("Livro não encontrado.")
+            except Exception as erro:
+                print(f"Erro ao atualizar livro: {erro}")
