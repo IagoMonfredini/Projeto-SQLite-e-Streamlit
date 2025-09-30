@@ -40,7 +40,7 @@ dados = op.listar_livros
 menu = ["Cadastrar Livro", "Listar Livros", "Atualizar Livro", "Remover Livro"]
 escolha = st.sidebar.selectbox("Menu", menu)
 
-    # Cadastrar Livros
+
 if escolha == "Cadastrar Livro":
         st.header("Cadastrar Novo Livro")
         titulo = st.text_input("Título")
@@ -54,19 +54,17 @@ if st.button("Cadastrar"):
         else:
             st.warning("Preencha todos os campos!")
 
-    # Listar Livros
 elif escolha == "Listar Livros":
-        st.header("📖 Lista de Livros")
+        st.header("Lista de Livros")
         dados = op.listar_livros()
         if dados:
             st.table(dados)
         else:
             st.info("Nenhum livro cadastrado.")
 
-    # Atualizar Livros
 elif escolha == "Atualizar Livro":
-        st.header("✏️ Atualizar Livro")
-        ados = op.listar_livros()
+        st.header("Atualizar Livro")
+        dados = op.listar_livros()
         if dados:
             st.dataframe(dados)
             id = st.number_input("Digite o ID do livro a ser atualizado:", min_value=1, step=1)
@@ -78,9 +76,8 @@ elif escolha == "Atualizar Livro":
         else:
             st.info("Nenhum livro para atualizar.")
 
-    # Remover Livro
 elif escolha == "Remover Livro":
-        st.header("🗑 Remover Livro")
+        st.header("Remover Livro")
         dados = op.listar_livros()
         if dados:
             st.dataframe(dados)
