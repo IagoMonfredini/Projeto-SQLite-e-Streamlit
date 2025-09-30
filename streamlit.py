@@ -40,20 +40,24 @@ dados = op.listar_livros()
 menu = ["Cadastrar Livro", "Listar Livros", "Atualizar Livro", "Remover Livro"]
 escolha = st.sidebar.selectbox("Menu", menu)
 
-
 if escolha == "Cadastrar Livro":
-        st.header("Cadastrar Novo Livro")
-        titulo = st.text_input("Título")
-        autor = st.text_input("Autor")
-        ano = st.date_input("Ano")
-        disponivel = st.selectbox("Disponibilidade", ["Sim", "Não"])
+    st.header("Cadastrar Novo Livro")
+    titulo = st.text_input("Título do Livro")
+    autor = st.text_input("Autor do Livro")
+    ano = st.number_input("Ano de Publicação", min_value=1000, max_value=2100, step=1)
+    disponivel = st.selectbox("Disponível?", ["Sim", "Não"])
 
-if st.button("Cadastrar"):
-    if titulo and autor and ano:
-        ano = str(ano.year)
-        op.cadastrar_livros(titulo.capitalize(), autor.capitalize(), ano.capitalize(), disponivel.capitalize())
-    else:
-        st.warning("Preencha todos os campos!")
+    if st.button("Cadastrar"):
+        if titulo and autor and ano:
+            op.cadastrar_livros(
+                titulo.capitalize(),
+                autor.capitalize(),
+                str(ano),
+                disponivel.capitalize()
+            )
+            st.success(f"Livro '{titulo}' cadastrado com sucesso!")
+        else:
+            st.warning("Preencha todos os campos!")
 
 elif escolha == "Listar Livros":
     st.header("Lista de Livros")
@@ -69,11 +73,10 @@ elif escolha == "Atualizar Livro":
     if dados:
         st.dataframe(dados)
         id = st.number_input("Digite o ID do livro a ser atualizado:", min_value=1, step=1)
-        campo = st.selectbox(f"Campo a atualizar", ["titulo", "autor", "ano", "disponivel"])
+        campo = st.selectbox("Campo a atualizar", ["titulo", "autor", "ano", "disponivel"])
         novo_valor = st.text_input("Novo valor")
-
-    if st.button("Atualizar"):
-        op.atualizar_livros(campo, novo_valor, id)
+        if st.button("Atualizar"):
+            op.atualizar_livros(campo, novo_valor, id)
     else:
         st.info("Nenhum livro para atualizar.")
 
@@ -85,5 +88,6 @@ elif escolha == "Remover Livro":
         id = st.number_input("Digite o ID do livro a ser removido:", min_value=1, step=1)
         if st.button("Remover"):
             op.deletar_livro(id)
+            st.success(f"Livro com ID {id} removido com sucesso!")
     else:
         st.warning("Nenhum livro para remover.")
